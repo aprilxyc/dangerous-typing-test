@@ -66,14 +66,19 @@ function checkStatus() {
 
 function startMatch() {
     if (matchWords()) {
-        console.log("Matched!");
+        isPlayer = true;
+        time     = 6;
+        showWord(words);
+        wordInput.value = "";  // clear the text
+        score++
     }
+    scoreDisplay.innerHTML = score;  // show the score
 }
 
 // matches current word to the word input
 function matchWords() {
        // this does the actual matching
-       if(matchWords(wordInput.value === currentWord.innerHTML)) {
+       if(wordInput.value === currentWord.innerHTML) {
         message.innerHTML = "Correct!"
         return true;
     } else {
