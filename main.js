@@ -1,7 +1,18 @@
 window.addEventListener('load', initialiseGame) // once window loads, fire off inittialise ggame
 
 // Global variables used for typing test
-let time  = 5;
+
+// Available levels
+const levels = {
+    easy  : 5,
+    medium: 3,
+    hard  : 2
+}
+
+// to change the level
+const currentLevel = levels.easy;  // set it to easy
+
+let time  = currentLevel;
 let score = 0;
 let isPlaying;
 
@@ -61,18 +72,24 @@ function countdown() {
 function checkStatus() {
    if(!isPlaying && time === 0) {
        message.innerHTML = "Game Over";
+       score             = -1;           // set to negative 1 so you don't get a score for the first word
    }
 }
 
 function startMatch() {
     if (matchWords()) {
         isPlayer = true;
-        time     = 6;
+        time     = currentLevel;
         showWord(words);
         wordInput.value = "";  // clear the text
         score++
     }
-    scoreDisplay.innerHTML = score;  // show the score
+    if (score === -1) {
+        scoreDisplay.innerHTML = 0
+    } else {
+        scoreDisplay.innerHTML = score;  // show the score
+    }
+
 }
 
 // matches current word to the word input
