@@ -1,6 +1,12 @@
 window.addEventListener('load', initialiseGame) // once window loads, fire off inittialise ggame
 
 // Global variables used for typing test
+// let user change level
+// implement local storage -- keep high school inside of value
+// get wpm
+// use api to fetch the words
+// make border red when game is over
+// do it for each letter (make it red)
 
 // Available levels
 const levels = {
@@ -33,6 +39,7 @@ const words = [
 
 // initialise game 
 function initialiseGame() {
+    seconds.innerHTML = currentLevel;
     // call function to load random word from array
     showWord(words);
 
