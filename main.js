@@ -24,6 +24,11 @@ const words = [
 function initialiseGame() {
     // call function to load random word from array
     showWord(words);
+
+    // start matching on keys
+    // everytime we type, we want to fire off an event that fires off a function
+    wordInput.addEventListener("input", startMatch);
+
     // call countdown every second
     setInterval(countdown, 1000); // run countdown every second
 
@@ -57,5 +62,23 @@ function checkStatus() {
    if(!isPlaying && time === 0) {
        message.innerHTML = "Game Over";
    }
+}
+
+function startMatch() {
+    if (matchWords()) {
+        console.log("Matched!");
+    }
+}
+
+// matches current word to the word input
+function matchWords() {
+       // this does the actual matching
+       if(matchWords(wordInput.value === currentWord.innerHTML)) {
+        message.innerHTML = "Correct!"
+        return true;
+    } else {
+        message.innerHTML = "";
+        return false;
+    }
 }
 
