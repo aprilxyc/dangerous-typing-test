@@ -26,6 +26,9 @@ function initialiseGame() {
     showWord(words);
     // call countdown every second
     setInterval(countdown, 1000); // run countdown every second
+
+    // check the game status to see if it is still being played or if the game is over
+    setInterval(checkStatus, 50)
 }
 
 // grab a word from array and show it
@@ -48,5 +51,11 @@ function countdown() {
 
     // show time 
     timeDisplay.innerHTML = time;  // set html to the time
+}
+
+function checkStatus() {
+   if(!isPlaying && time === 0) {
+       message.innerHTML = "Game Over";
+   }
 }
 
