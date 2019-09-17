@@ -24,6 +24,8 @@ const words = [
 function initialiseGame() {
     // call function to load random word from array
     showWord(words);
+    // call countdown every second
+    setInterval(countdown, 1000); // run countdown every second
 }
 
 // grab a word from array and show it
@@ -31,6 +33,20 @@ function showWord(words) {
     // make random index to create random word
     const randomIndex = Math.floor(Math.random() * words.length);
     // display random word
-    currentWord.innerHTML = words[randomIndex]
+    currentWord.innerHTML = words[randomIndex];
+}
+
+function countdown() {
+    // if time is greater than 0 then time has not run out
+    if(time > 0) {
+        // decrementt the time
+        time--;
+    } else if(time === 0) {
+        // game is over
+        isPlaying = false;
+    }
+
+    // show time 
+    timeDisplay.innerHTML = time;  // set html to the time
 }
 
